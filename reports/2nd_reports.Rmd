@@ -1,0 +1,28 @@
+---
+title: "2nd_reports"
+author: "Kai Han"
+date: "2022-10-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+library(tidyverse)
+library(here)
+```
+
+```{r plot}
+gapminder <- read_csv(here("data/gapminder_data.csv"))
+ggplot(gapminder, aes(x = pop, y = year))+
+  facet_wrap(vars(continent))+
+  geom_point()
+```
+```{r findoutliers}
+gapminder %>%
+  filter(continent == "Asia" & pop >= 200000000)
+```
+The two countries are China and India.
+
