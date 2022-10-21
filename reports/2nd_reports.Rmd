@@ -26,3 +26,24 @@ gapminder %>%
 ```
 The two countries are China and India.
 
+```{r plot without outliers}
+gapminder_no_outlier <- gapminder %>%
+  filter(pop<200000000)
+
+ggplot(gapminder_no_outlier, aes(x = pop, y = year))+
+  facet_wrap(vars(continent))+
+  geom_point()
+```
+```{r highest lifeExp for 1982}
+gapminder_1982 <- gapminder %>%
+  filter(year == 1982)
+slice_max(gapminder_1982, order_by = lifeExp)
+```
+
+Highest Life Expectancy is Japan
+
+```{r highest lifeExp}
+gapminder %>%
+  group_by(year)%>%
+  slice_max(order_by = lifeExp)
+```
